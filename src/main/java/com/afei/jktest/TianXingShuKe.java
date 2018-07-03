@@ -19,7 +19,6 @@ public class TianXingShuKe {
         String accountNO = jsonObject.getString("accountNO");
         System.out.println(getDataWay);
         Result result = new Result();
-        Data data = new Data();
         Map<String,Object> map = new HashMap<>();
       if(getDataWay == 1) {                        //成功时返回参数结构
             result.setCode("S000000");
