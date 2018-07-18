@@ -13,14 +13,14 @@ public class TianXingShuKe {
     @PostMapping(value="/", produces = "application/json;charset=UTF-8")
     public Result queryCenterAnxinqian(@RequestBody JSONObject jsonParam){
         JSONObject jsonObject = jsonParam.getJSONObject("data");
-        int getDataWay = jsonObject.getInt("getDataWay");
+        String getDataWay = jsonObject.getString("getDataWay");
         String name = jsonObject.getString("name");
         String id_card = jsonObject.getString("id_card");
         String accountNO = jsonObject.getString("accountNO");
         System.out.println(getDataWay);
         Result result = new Result();
         Map<String,Object> map = new HashMap<>();
-      if(getDataWay == 1) {                        //成功时返回参数结构
+      if(getDataWay.equals("1")) {                        //成功时返回参数结构
             result.setCode("S000000");
             result.setMsg("验证成功");
             result.setGetDataWay("others");
@@ -32,12 +32,12 @@ public class TianXingShuKe {
             map.put("success",true);
             result.setData(map);
             return result;
-        }else if(getDataWay == 2){                //无数据时返回数据结构
+        }else if(getDataWay.equals("2")){                //无数据时返回数据结构
             result.setCode("E0000");
             result.setMsg("查询成功无数据");
             result.setGetDataWay("local");
           return result;
-      }else if(getDataWay == 3){                  //不匹配时返回数据结构
+      }else if(getDataWay.equals("3")){                  //不匹配时返回数据结构
           result.setCode("E00");
           result.setMsg("验证失败,信息不匹配");
           result.setGetDataWay("others");
